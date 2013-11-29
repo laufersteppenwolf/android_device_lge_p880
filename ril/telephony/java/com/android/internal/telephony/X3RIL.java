@@ -128,8 +128,7 @@ public class X3RIL extends RIL implements CommandsInterface {
                 break;
         }
     }
-
-    protected void
+/**    protected void
     processSolicited (Parcel p) {
         int serial, error;
         boolean found = false;
@@ -140,14 +139,14 @@ public class X3RIL extends RIL implements CommandsInterface {
         RILRequest rr = null;
 
         /* Pre-process the reply before popping it */
-        synchronized (mRequestList) {
+/**        synchronized (mRequestList) {
             for (int i = 0, s = mRequestList.size() ; i < s ; i++) {
                 RILRequest tr = mRequestList.get(i);
                 if (tr.mSerial == serial) {
                     if (error == 0 || p.dataAvail() > 0) {
                         try {switch (tr.mRequest) {
                             /* Get those we're interested in */
-                            case 0x113:
+/**                            case 0x113:
                                 rr = tr;
                                 break;
                         }} catch (Throwable thr) {
@@ -166,7 +165,7 @@ public class X3RIL extends RIL implements CommandsInterface {
 
         if (rr == null) {
             /* Nothing we care about, go up */
-            p.setDataPosition(dataPosition);
+/**            p.setDataPosition(dataPosition);
 
             // Forward responses that we are not overriding to the super class
             super.processSolicited(p);
@@ -196,7 +195,7 @@ public class X3RIL extends RIL implements CommandsInterface {
                         + " " + retToString(rr.mRequest, ret));
                 /* COMMAND 1 inits hardware-related properties. We
                  * only need it once per power cycle */
-                if (!sentHwBootstrap) {
+/**                if (!sentHwBootstrap) {
                     RILRequest rrLSC = RILRequest.obtain(
                             0x113, null);
                     rrLSC.mParcel.writeInt(1);
@@ -214,6 +213,6 @@ public class X3RIL extends RIL implements CommandsInterface {
         }
 
         rr.release();
-    }
+    } */
 
 }
